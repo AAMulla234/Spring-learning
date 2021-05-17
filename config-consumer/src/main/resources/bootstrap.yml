@@ -1,0 +1,20 @@
+server.port: 8090
+
+spring:
+  application.name: config-consumer
+  zipkin.service.name: config-consumer
+  zipkin.sender.type: web
+  zipkin.baseUrl: http://localhost:9411
+  sleuth.sampler.percentage: 1.0	
+ 
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+    registryFetchIntervalSeconds: 1
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    instance-id: ${spring.application.name}:${random.int}
+
+

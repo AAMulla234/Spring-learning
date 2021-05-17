@@ -1,0 +1,28 @@
+server.port: 8102
+
+spring:
+  application.name: config-client
+  zipkin.service.name: config-client
+  zipkin.sender.type: web
+  zipkin.baseUrl: http://localhost:9411
+  sleuth.sampler.percentage: 1.0	
+  cloud.config:
+    discovery:
+      enabled: true
+      serviceId: config-server
+    fail-fast: true
+    retry:
+      initialInterval: 2000
+      maxAttempts: 30
+  mvc.servlet.load-on-startup: 1
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+    registryFetchIntervalSeconds: 1
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    instance-id: ${spring.application.name}:${random.int}
+
+
