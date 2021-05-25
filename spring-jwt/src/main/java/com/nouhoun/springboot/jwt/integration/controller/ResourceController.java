@@ -1,5 +1,6 @@
 package com.nouhoun.springboot.jwt.integration.controller;
 
+import com.nouhoun.springboot.jwt.integration.domain.Cart;
 import com.nouhoun.springboot.jwt.integration.domain.RandomCity;
 import com.nouhoun.springboot.jwt.integration.domain.User;
 import com.nouhoun.springboot.jwt.integration.service.GenericService;
@@ -31,5 +32,13 @@ public class ResourceController {
     @PreAuthorize("hasAuthority('ADMIN_USER')")
     public List<User> getUsers(){
         return userService.findAllUsers();
+    }
+
+    private void testCart(){
+        Cart cart = new Cart(6);
+        Cart cart2 = new Cart(7);
+        Cart cart3 = new Cart(2);
+
+     RuleMatrix.getRule(cart).apply(cart);
     }
 }
